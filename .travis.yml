@@ -1,0 +1,31 @@
+language: python
+python:
+- 2.6
+- 2.7
+- 3.2
+- 3.3
+- 3.4
+- 3.5
+- pypy
+install:
+- pip install -r build_requirements.txt
+- pip install -r requirements.txt
+script:
+- python -m pytest -v --cov requests_ntlm2 --cov-report term-missing requests_ntlm2/
+after_success:
+- pushd .
+- coveralls
+- python setup.py sdist
+- cd dist
+- pip install requests-ntlm2-*.tar.gz
+- echo "y" | pip uninstall requests-ntlmv2
+- popd
+deploy:
+  provider: pypi
+  user: iclegg
+  distributions: sdist
+  password:
+    secure: aXmoJxoFmNgMmxATYa86FOkNeJ9TpFD3G5KwE93Qr0fnwcD1ny8XDI4C8nzCgYxDw6j7hEdKqQ+sHnWi/dCoc4bhffzEoziZTTh7qipkPXsjq+lmlR79H+KHDwQtsbrV6N8MdggGsYZYk3pcQ9+cYXqx470D7m8kmaetRxYTGoo=
+  on:
+    tags: true
+    all_branches: true
