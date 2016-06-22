@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from ._version import get_versions
 from .requests_ntlm2 import HttpNtlm2Auth
 from .exceptions import InvalidCredentialsError, NtlmAuthenticationError
 
@@ -23,10 +22,6 @@ except ImportError:
     class NullHandler(logging.Handler):
         def emit(self, record):
             pass
-
-# Use version information supplied by versioneer during the build
-__version__ = get_versions()['version']
-del get_versions
 
 # Set default logging handler to avoid "No handler found" warnings.
 logging.getLogger(__name__).addHandler(NullHandler())

@@ -1,15 +1,6 @@
-import os
-import versioneer
 from setuptools import setup
 
 project_name = 'requests-ntlm2'
-
-# versioneer configuration
-versioneer.VCS = 'git'
-versioneer.versionfile_source = os.path.join('requests_ntlm2', '_version.py')
-versioneer.versionfile_build = os.path.join('requests_ntlm2', '_version.py')
-versioneer.tag_prefix = ''
-versioneer.parentdir_prefix = 'requests_ntlm2'
 
 # PyPi supports only reStructuredText, so pandoc should be installed
 # before uploading package
@@ -21,12 +12,12 @@ except ImportError:
 
 requires = [
     "requests == 2.5.0",
-    "ntlmlib >= 0.70"
+    "ntlmlib >= 0.72"
 ]
 
 setup(
     name=project_name,
-    version=versioneer.get_version(),
+    version=0.01,
     description='Python library to use Requests NTLMv1 or NTLMv2',
     long_description=long_description,
     keywords='requests ntlm ntlmv2 ntlmv1 http'.split(' '),
@@ -36,7 +27,6 @@ setup(
     license='MIT license',
     packages=['requests_ntlm2'],
     install_requires=requires,
-    cmdclass=versioneer.get_cmdclass(),
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',

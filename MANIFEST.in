@@ -1,2 +1,0 @@
-include versioneer.py
-include requests-ntlmv2\_version.py
